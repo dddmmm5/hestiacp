@@ -3,10 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [CURRENT] - Development
 
-## [1.2.0] - 2020-06-29 - Major Release (Feature / Quality Update)
+## [1.2.0] - Major Release (Feature / Quality Update)
 ### Features
+- **NOTE:** Debian 8 is no longer supported as it has reached EOL (end-of-life) status.
 - Added support for Ubuntu Server 20.04 LTS.
-- Added File Manager functionality (Filegator).
+- Added File Manager functionality (File Gator).
 - Extended built-in firewall to support allowing or blocking traffic using IP lists.
 - Improved Apache2 performance by switching to mpm_event instead mod_prefork by default for new installations.
 - Added support for configuring individual TTL per DNS record. Thanks to @jaapmarcus!
@@ -18,7 +19,8 @@ All notable changes to this project will be documented in this file.
 - Added the ability to manage SSH keys from CLI and web interface.
 - Added a manual migration script for apache2 mpm_event for existing installations/upgrades (`$HESTIA/install/upgrade/manual/migrate_mpm_event.sh`).
 - Added BATS system for testing the functionality of Bash scripts (WIP).
-- **NOTE:** Debian 8 is no longer supported as it has reached EOL status.
+- Added **v-change-sys-db-alias** to change phpMyAdmin and phpPgAdmin access points (`v-change-sys-db-alias pma/pga myCustomURL`).
+
 
 ### Bugfixes
 - Prevent ability to change the password of a non-Hestia user account. Thanks to Alexandre Zanni!
@@ -30,10 +32,12 @@ All notable changes to this project will be documented in this file.
 - Fixed an issue where e-mail quota was not preserved when (un)suspending or rebuilding a mail account.
 - Fixed an issue where SSH configuration was not saved currently when edited from the Web interface.
 - Fixed an issue where DNS IP did not use NAT/Public IP when available after changing web domain IP.
+- Fixed an issue that would occur when a user would attempt to recover their account when two-factor authentication is enabled.
 - Fixed permission issues that were presented when restoring a user backup.
+- Improved page load performance of Control Panel web interface.
 - Use Sury.org repository for Apache2 packages.
 - Improved compatibility with Roundcube and PHP 7.4.
-- Restrict the ability to edit crontab service via Web UI.
+- Restrict the ability to edit crontab service via Control Panel web interface.
 - Check whether Nginx, Apache2 and MariaDB are selected for installation prior to adding third party repositories.
 - Restrict public access to Apache2 server-status page.
 - Remove duplicated set-cookie line in default fpm config.
@@ -43,6 +47,7 @@ All notable changes to this project will be documented in this file.
 - Cleanup temporary files when uploading custom SSL certificate from Web interface.
 - Cleanup temporary files when adding/renewing Let's Encrypt SSL certificate.
 - Cleanup temporary files after running v-list-sys-services.
+- Removed some legacy code and unused assets.
 - Don't calculate /home folder size in v-list-sys-info.
 - Adjust v-list-sys-services to honor the changed fail2ban service name.
 - Rework busy port validation in v-change-sys-port.
@@ -52,6 +57,24 @@ All notable changes to this project will be documented in this file.
 - Fixed an issue where the backup update counter was not updated properly when v-delete-user-backup was executed.
 - Fixed an issue with public_(s)html file ownership.
 - Fixed an issue with phpPgAdmin access.
+- Fixed an issue where the wrong port was set for www.conf on certain configurations.
+- Fixed an issue where Composer would fail to install.
+- Fixed an issue where the selected theme was not immediately applied.
+- Fixed an issue where HTTP-to-HTTPS redirection and HTTP Strict Transport Security (HSTS) events were not shown in the user history log.
+- Fixed an issue where the web domain access log page was incorrectly formatted.
+- Fixed an issue where awstats would show a HostAliases error if a web domain did not have any aliases.
+- Fixed an issue where awstats configuration was not updated if web domain aliases were added or removed.
+- Fixed an issue where phpMyAdmin and phpPgAdmin were inaccessible from the Web UI if custom URLs had been set.
+- Corrected the behavior of phpMyAdmin and phpPgAdmin so that alias dialogs accept custom word only and not full URL, aligns with webmail alias behavior.
+- Corrected the behavior of the installer so that APT repositories are not added if installation is aborted due to version mismatch.
+
+### Known issues and notes
+- **NOTE:** Custom phpMyAdmin and phpPgAdmin URL's will be reset once during this upgrade to correct a legacy code issue.
+- Let's Encrypt renewal fails when removing alias from web domain (#856)
+- Some translation strings need to be updated for accuracy (#746)
+- SSL certificates are not migrated properly when using v-change-domain-owner (#734)
+- v-restore-user only works with backup archives stored in /backup mount point (#641)
+- www web domain alias is not created in certain scenarios (#558)
 
 ## [1.1.1] - 2020-03-24 - Hotfix
 ### Features
