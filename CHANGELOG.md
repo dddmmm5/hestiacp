@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [CURRENT] - Development
 
-## [1.2.0] - 2020-06-29 - Major Release (Feature / Quality Update)
+## [1.2.0] - Major Release (Feature / Quality Update)
 ### Features
 - Added support for Ubuntu Server 20.04 LTS.
 - Added File Manager functionality (Filegator).
@@ -30,10 +30,12 @@ All notable changes to this project will be documented in this file.
 - Fixed an issue where e-mail quota was not preserved when (un)suspending or rebuilding a mail account.
 - Fixed an issue where SSH configuration was not saved currently when edited from the Web interface.
 - Fixed an issue where DNS IP did not use NAT/Public IP when available after changing web domain IP.
+- Fixed an issue that would occur when a user would attempt to recover their account when two-factor authentication is enabled.
 - Fixed permission issues that were presented when restoring a user backup.
+- Improved page load performance of Control Panel web interface.
 - Use Sury.org repository for Apache2 packages.
 - Improved compatibility with Roundcube and PHP 7.4.
-- Restrict the ability to edit crontab service via Web UI.
+- Restrict the ability to edit crontab service via Control Panel web interface.
 - Check whether Nginx, Apache2 and MariaDB are selected for installation prior to adding third party repositories.
 - Restrict public access to Apache2 server-status page.
 - Remove duplicated set-cookie line in default fpm config.
@@ -43,6 +45,7 @@ All notable changes to this project will be documented in this file.
 - Cleanup temporary files when uploading custom SSL certificate from Web interface.
 - Cleanup temporary files when adding/renewing Let's Encrypt SSL certificate.
 - Cleanup temporary files after running v-list-sys-services.
+- Removed some legacy code and unused assets.
 - Don't calculate /home folder size in v-list-sys-info.
 - Adjust v-list-sys-services to honor the changed fail2ban service name.
 - Rework busy port validation in v-change-sys-port.
@@ -52,6 +55,14 @@ All notable changes to this project will be documented in this file.
 - Fixed an issue where the backup update counter was not updated properly when v-delete-user-backup was executed.
 - Fixed an issue with public_(s)html file ownership.
 - Fixed an issue with phpPgAdmin access.
+- Fixed an issue where the wrong port was set for www.conf on certain configurations.
+- Fixed an issue where Composer would fail to install.
+- Fixed an issue where the selected theme was not immediately applied.
+- Fixed an issue where HTTP-to-HTTPS redirection and HTTP Strict Transport Security (HSTS) events were not shown in the user history log.
+- Fixed an issue where the web domain access log page was incorrectly formatted.
+- Fixed an issue where awstats would show a HostAliases error if a web domain did not have any aliases.
+- Fixed an issue where awstats configuration was not updated if web domain aliases were added or removed.
+- Corrected the behavior of the installer so that APT repositories are not added if installation is aborted due to version mismatch.
 
 ## [1.1.1] - 2020-03-24 - Hotfix
 ### Features
