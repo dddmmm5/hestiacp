@@ -518,14 +518,6 @@ echo
 #
 ###########################################################################################
 
-# Change system port
-cmd="v-change-sys-port 18225"
-$cmd > $tmpfile 2>> $tmpfile
-echo_result "[SYSTEM]: Change system port to 18255" "$?" "$tmpfile" "$cmd"
-cmd="v-change-sys-port 18225"
-$cmd > $tmpfile 2>> $tmpfile
-echo_result "[SYSTEM]: Change system port to 8083 (default)" "$?" "$tmpfile" "$cmd"
-
 # Change system configuration value
 cmd="v-change-sys-config-value TEST_MODE true"
 $cmd > $tmpfile 2>> $tmpfile
